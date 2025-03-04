@@ -1,5 +1,5 @@
 <?php
-
+use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -12,9 +12,13 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+/*
 Route::get('/about', function () {
     return view('about');
 });
+*/
+Route::view('/about','about');
+
 Route::get('/home', function () {
     return view('home');
 });
@@ -24,12 +28,10 @@ Route::get('/', function () {
 });
 
 
-Route::get('/home,HomeController@home' )->name('home');
+Route::get('/home',[HomeController::class,'home'] )->name('home');
 
 
-Route::get('posts/{id}', function ($id) {
-    return $id;
-});
+Route::get('/show/{id}/{book?}', [HomeController::class , "blog"])->name("blog");
 
 
 
